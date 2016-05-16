@@ -5,8 +5,8 @@ import argparse
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--infile", dest="infile",  required=True)
-    parser.add_argument("-d", "--dry-run", dest="dry", required=False, default=False)
+    parser.add_argument("-i", "--infile", dest="infile",  required=True, help="A file with the genbank id in the expected column. Check out the data_locations dir for an idea.")
+    parser.add_argument("-d", "--dry-run", dest="dry", required=False, default=False, help="Don't download anything, just do a GET from the server and see what will be downloaded.")
 
     return parser.parse_args()
 
