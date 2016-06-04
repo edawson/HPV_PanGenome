@@ -44,12 +44,13 @@ These sequences appear in both:
         Humantype_PPHDNA.gb333087.fa
 
 
-There are also additional sequences available in Nucleotide (use search query `"Papillomaviridae"[Organism] AND complete genome[Title] AND "human"[Title]` )
+There are also additional sequences available in Nucleotide (use search query `"Papillomaviridae"[Organism] AND complete genome[Title] AND "human"[Title]` ).
+These have been included as a single Fasta file (all_HPV_nucleotide.fa); it contains 1,128 full-genome sequences.
 
 ### HPV Taxonomy
-Types differ by 10% sequence divergence.  
+Types differ by at least 10% sequence divergence.  
 Subtypes differ by 2-10%.  
-Variants differ by <2% sequence divergence to a known type.
+Variants differ by less than 2% sequence divergence to a known type.
 More info [at PAVE](https://pave.niaid.nih.gov/#explore/taxonomy/taxonomy_concept)
 
 ### What is a "PanGenome"
@@ -60,3 +61,8 @@ as is a Cortex cDBG, as is a variation graph.
 ### Building a pangenome with Mash
 
 ### Building a pangenome with vg
+We could just build a giant graph that contains all sequences, but we'd like to collapese areas of common sequence into common paths.
+This is also a non-trivial task, as the sequences can be quite divergent.
+
+We can generate a more compact graph  by collapsing all subtypes into their corresponding type. To do so, we'll run a wrapper script
+that preclusters sequences with Mash, then runs a graph assembly on all sequences within a certain Jaccard distance.
